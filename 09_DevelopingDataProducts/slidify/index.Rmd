@@ -59,7 +59,7 @@ library(slidify)
 - Set the working directory to where you want to create your Slidify project
 
 ```r
-setwd("~/sample/project/")
+setwd("./sampleProject")
 ```
 
 - Create your project and give your project a name (My project is named "first_deck")

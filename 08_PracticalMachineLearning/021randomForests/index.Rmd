@@ -63,7 +63,7 @@ __Cons__:
 ## Iris data
 
 ```{r iris, cache=TRUE}
-data(iris); library(ggplot2)
+data(iris); library(ggplot2); library(caret)
 inTrain <- createDataPartition(y=iris$Species,
                               p=0.7, list=FALSE)
 training <- iris[inTrain,]
@@ -77,6 +77,7 @@ testing <- iris[-inTrain,]
 
 ```{r forestIris, dependson="irisData",fig.height=4,fig.width=4,cache=TRUE}
 library(caret)
+#method = "rf" is the random forest command
 modFit <- train(Species~ .,data=training,method="rf",prox=TRUE)
 modFit
 ```
@@ -86,6 +87,7 @@ modFit
 ## Getting a single tree
 
 ```{r , dependson="forestIris",fig.height=4,fig.width=4}
+#get the second tree, k=2
 getTree(modFit$finalModel,k=2)
 ```
 
@@ -94,6 +96,7 @@ getTree(modFit$finalModel,k=2)
 ## Class "centers"
 
 ```{r centers, dependson="forestIris",fig.height=4,fig.width=4}
+#use the "classCenter" to see what the predictions would be at the centers of the predicted values
 irisP <- classCenter(training[,c(3,4)], training$Species, modFit$finalModel$prox)
 irisP <- as.data.frame(irisP); irisP$Species <- rownames(irisP)
 p <- qplot(Petal.Width, Petal.Length, col=Species,data=training)
@@ -105,7 +108,9 @@ p + geom_point(aes(x=Petal.Width,y=Petal.Length,col=Species),size=5,shape=4,data
 ## Predicting new values
 
 ```{r predForest, dependson="centers",fig.height=4,fig.width=4,cache=TRUE}
+#predict new values with testing dataset
 pred <- predict(modFit,testing); testing$predRight <- pred==testing$Species
+#table shows specificity and sensitivity
 table(pred,testing$Species)
 ```
 
@@ -114,6 +119,7 @@ table(pred,testing$Species)
 ## Predicting new values
 
 ```{r, dependson="predForest",fig.height=4,fig.width=4}
+#see which points were incorrectly predicted (red dots)
 qplot(Petal.Width,Petal.Length,colour=predRight,data=testing,main="newdata Predictions")
 ```
 

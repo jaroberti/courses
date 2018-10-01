@@ -83,6 +83,7 @@ g
 ## Graphical Depiction of Power
 ```{r, echo = TRUE, eval=FALSE}
 library(manipulate)
+library(ggplot2)
 mu0 = 30
 myplot <- function(sigma, mua, n, alpha){
     g = ggplot(data.frame(mu = c(27, 36)), aes(x = mu))

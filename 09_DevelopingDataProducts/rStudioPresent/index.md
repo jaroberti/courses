@@ -1,7 +1,7 @@
 RStudio Presenter
 ===
 author: Brian Caffo, Jeff Leek Roger Peng
-date: May 24 2014
+date: December 16 2015
 transition: rotate
 
 <small> 

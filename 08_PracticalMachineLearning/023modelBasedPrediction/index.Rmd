@@ -138,7 +138,7 @@ $$ \approx \pi_k P(X_1 | Y = k) P(X_2 | Y = k)\ldots P(X_m |,Y=k)$$
 ## Example: Iris Data
 
 ```{r iris, cache=TRUE}
-data(iris); library(ggplot2)
+data(iris); library(ggplot2); library(caret)
 names(iris)
 table(iris$Species)
 ```

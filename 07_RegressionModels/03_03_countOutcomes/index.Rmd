@@ -100,8 +100,9 @@ be web hits per hour).
 ## Website data
 
 ```{r leekLoad,cache=TRUE}
-download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="./data/gaData.rda",method="curl")
-load("./data/gaData.rda")
+setwd("C:/Users/jroberti/Git/courses/07_RegressionModels/03_03_countOutcomes/data")
+download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="gaData.rda",method="curl")
+load("gaData.rda")
 gaData$julian <- julian(gaData$date)
 head(gaData)
 ```

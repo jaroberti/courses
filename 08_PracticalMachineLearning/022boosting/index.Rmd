@@ -110,6 +110,7 @@ $f(x) = \rm{sgn}\left(\sum_{t=1}^T \alpha_t h_t(x)\right)$.
 
 ```{r wage, cache=TRUE}
 library(ISLR); data(Wage); library(ggplot2); library(caret);
+#remove the variable that we're trying to predict: logwage
 Wage <- subset(Wage,select=-c(logwage))
 inTrain <- createDataPartition(y=Wage$wage,
                               p=0.7, list=FALSE)
@@ -122,6 +123,7 @@ training <- Wage[inTrain,]; testing <- Wage[-inTrain,]
 ## Fit the model
 
 ```{r, dependson="wage", cache=TRUE}
+#model the wage variable as a function of all the other variables in the dataset.  We will use the "gbm" fit; use verbose = FALSE to avoid inordinate amount of outputs
 modFit <- train(wage ~ ., method="gbm",data=training,verbose=FALSE)
 print(modFit)
 ```
@@ -131,6 +133,7 @@ print(modFit)
 ## Plot the results
 
 ```{r, dependson="wage", fig.height=4,fig.width=4}
+#use the model to predict on the testing set:
 qplot(predict(modFit,testing),wage,data=testing)
 ```
 

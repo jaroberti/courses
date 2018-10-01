@@ -57,7 +57,9 @@ cat('<iframe src="fig/n1.html" width=100%, height=600></iframe>')
 ---
 ## nvD3 run
 ```{r, echo = FALSE, results = 'hide'}
-require(rCharts)
+require(devtools)
+install_github('rCharts', 'ramnathv')
+library(rCharts)
 ```
 ```{r echo = FALSE, results = 'asis'}
 haireye = as.data.frame(HairEyeColor)
@@ -67,7 +69,7 @@ n1 <- nPlot(Freq ~ Hair, group = 'Eye', type = 'multiBarChart',
 n1$save('fig/n1.html', cdn = TRUE)
 cat('<iframe src="fig/n1.html" width=100%, height=600></iframe>')
 ```
-
+getwd()
 ---
 ## Slidify interactive
 - The above was an example of embedding an rChart in a slidify document
@@ -249,7 +251,6 @@ h1 <- hPlot(x = "Wr.Hnd", y = "NW.Hnd", data = MASS::survey, type = c("line",
 h1$save('fig/h1.html', cdn = TRUE)
 cat('<iframe src="fig/h1.html" width=100%, height=600></iframe>')
 ```
-
 
 ---
 ## highchart run

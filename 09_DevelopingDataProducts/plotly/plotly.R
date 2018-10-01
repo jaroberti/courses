@@ -3,7 +3,7 @@
 ##
 ## Brian Caffo 7/10/2014
 
-
+setwd("C:/Users/jroberti/Git/courses/09_DevelopingDataProducts/plotly/")
 load("courseraData.rda")
 
 
@@ -20,7 +20,7 @@ g <- g + geom_bar(stat = "identity")
 g
 
 ## Let's try to get it into plot.ly
-py <- plotly()
+py <- plot_ly()
 out <- py$ggplotly(g)
 out$response$url
 

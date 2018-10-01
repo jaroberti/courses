@@ -45,7 +45,8 @@ knit_hooks$set(plot = knitr:::hook_plot_html)
 ### Ravens Data
 
 ```{r loadRavens,cache=TRUE}
-download.file("https://dl.dropboxusercontent.com/u/7710864/data/ravensData.rda"
+setwd("C:/Users/jroberti/Git/courses/07_RegressionModels/03_02_binaryOutcomes")
+ravensData<-download.file("https://dl.dropboxusercontent.com/u/7710864/data/ravensData.rda"
               , destfile="./data/ravensData.rda",method="curl")
 load("./data/ravensData.rda")
 head(ravensData)
@@ -146,6 +147,7 @@ $\exp(b_1)$ - Odds ratio of win probability for each point scored (compared to z
 ## Visualizing fitting logistic regression curves
 ```
 x <- seq(-10, 10, length = 1000)
+library(manipulate)
 manipulate(
     plot(x, exp(beta0 + beta1 * x) / (1 + exp(beta0 + beta1 * x)), 
          type = "l", lwd = 3, frame = FALSE),

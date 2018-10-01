@@ -99,8 +99,8 @@ head(GOOG)
 ## Summarize monthly and store as time series
 
 ```{r tseries,dependson="loadGOOG",fig.height=4,fig.width=4}
-mGoog <- to.monthly(GOOG)
-googOpen <- Op(mGoog)
+googOpen <- Op(GOOG)
+mGoog <- to.period(googOpen, 'months')
 ts1 <- ts(googOpen,frequency=12)
 plot(ts1,xlab="Years+1", ylab="GOOG")
 ```
@@ -142,10 +142,10 @@ ts1Train
 $$ Y_{t}=\frac{1}{2*k+1}\sum_{j=-k}^k {y_{t+j}}$$
 
 ```{r ,dependson="trainingTest",fig.height=4.5,fig.width=4.5}
+library(forecast)
 plot(ts1Train)
 lines(ma(ts1Train,order=3),col="red")
 ```
-
 
 
 ---
